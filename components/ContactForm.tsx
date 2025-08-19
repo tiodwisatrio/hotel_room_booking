@@ -36,7 +36,11 @@ const ContactForm = () => {
   }, [state]);
 
   return (
-    <div className="bg-[var(--background)] shadow-[0px_5px_28px_-5px_rgba(255,_255,_255,_0.04)] p-8 rounded-md">
+    <div
+      className="bg-[var(--background)] shadow-[0px_5px_28px_-5px_rgba(255,_255,_255,_0.04)] p-8 rounded-md"
+      data-aos="fade-up"
+      data-aos-delay="800"
+    >
       {/* Menampilkan pesan sukses */}
       {state?.message ? (
         <div

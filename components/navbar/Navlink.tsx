@@ -1,3 +1,4 @@
+// ...existing code...
 "use client";
 import { IoClose, IoMenu } from "react-icons/io5";
 import { useState } from "react";
@@ -53,6 +54,7 @@ const Navlink = () => {
           <li>
             <Link
               href="/"
+              onClick={() => setIsOpen(false)}
               className="block py-2 px-3 text-white hover:text-[var(--gold)] rounded-sm md:hover:bg-transparent md:p-0"
             >
               Home
@@ -61,6 +63,7 @@ const Navlink = () => {
           <li>
             <Link
               href="/about"
+              onClick={() => setIsOpen(false)}
               className="block py-2 px-3 text-white hover:text-[var(--gold)] rounded-sm md:hover:bg-transparent md:p-0"
             >
               About
@@ -69,6 +72,7 @@ const Navlink = () => {
           <li>
             <Link
               href="/room"
+              onClick={() => setIsOpen(false)}
               className="block py-2 px-3 text-white hover:text-[var(--gold)] rounded-sm md:hover:bg-transparent md:p-0"
             >
               Room
@@ -77,6 +81,7 @@ const Navlink = () => {
           <li>
             <Link
               href="/contact"
+              onClick={() => setIsOpen(false)}
               className="block py-2 px-3 text-white hover:text-[var(--gold)] rounded-sm md:hover:bg-transparent md:p-0"
             >
               Contact
@@ -88,6 +93,7 @@ const Navlink = () => {
               <li>
                 <Link
                   href="/myreservation"
+                  onClick={() => setIsOpen(false)}
                   className="block py-2 px-3 text-white hover:text-[var(--gold)] rounded-sm md:hover:bg-transparent md:p-0"
                 >
                   My Reservation
@@ -99,6 +105,7 @@ const Navlink = () => {
                   <li>
                     <Link
                       href="/admin/dashboard"
+                      onClick={() => setIsOpen(false)}
                       className="block py-2 px-3 text-white hover:text-[var(--gold)] rounded-sm md:hover:bg-transparent md:p-0"
                     >
                       Admin Dashboard
@@ -107,6 +114,7 @@ const Navlink = () => {
                   <li>
                     <Link
                       href="/admin/room"
+                      onClick={() => setIsOpen(false)}
                       className="block py-2 px-3 text-white hover:text-[var(--gold)] rounded-sm md:hover:bg-transparent md:p-0"
                     >
                       Manage Room
@@ -120,7 +128,10 @@ const Navlink = () => {
           {session ? (
             <li className="pt-2 md:pt-0">
               <button
-                onClick={() => signOut()}
+                onClick={() => {
+                  setIsOpen(false);
+                  signOut();
+                }}
                 className="md:hidden px-4 py-2.5 bg-red-400 text-white hover:bg-red-600 rounded-sm cursor-pointer text-[10px]"
               >
                 Sign Out
@@ -130,6 +141,7 @@ const Navlink = () => {
             <li className="pt-2 md:pt-0">
               <Link
                 href="/signin"
+                onClick={() => setIsOpen(false)}
                 className="px-6 py-2.5 bg-[var(--gold)] text-white hover:bg-[var(--goldhover)] rounded-sm text-[10px]"
               >
                 SignIn
@@ -143,3 +155,4 @@ const Navlink = () => {
 };
 
 export default Navlink;
+// ...existing code...

@@ -13,24 +13,38 @@ export const metadata: Metadata = {
 const ContactPage = () => {
   return (
     <div className="px-8">
-      {/* <HeaderSection
-        title="Contact Us"
-        subtitle="Lorem ipsum dolor sit amet."
-      /> */}
       <div className="max-w-screen-xl mx-auto py-20 px-4">
         <div className="grid md:grid-cols-2 gap-8">
-          <div className="">
-            <h1 className="text-lg text-white mb-3 opacity-70 font-medium">
+          <div>
+            <h1
+              className="text-lg text-white mb-3 opacity-70 font-medium"
+              data-aos="fade-down"
+              data-aos-delay="200"
+            >
               Contact Us
             </h1>
-            <h1 className="text-5xl font-bold text-white  mb-4">
+            <h1
+              className="text-5xl font-bold text-white  mb-4"
+              data-aos="fade-down"
+              data-aos-delay="400"
+            >
               Get in touch today
             </h1>
-            <p className="text-white opacity-70 py-5">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
-              natus omnis dolorem, perspiciatis voluptas accusantium.
+            <p
+              className="text-white opacity-70 py-5 text-sm"
+              data-aos="fade-down"
+              data-aos-delay="600"
+            >
+              We are here to assist you with any inquiries or concerns you may
+              have. Whether you need help with your reservation, have questions
+              about our services, or simply want to share your feedback, our
+              dedicated team is ready to help.
             </p>
-            <ul className="list-item space-y-6 pt-8">
+            <ul
+              className="list-item space-y-6 pt-8"
+              data-aos="fade-up"
+              data-aos-delay="800"
+            >
               <li className="flex gap-5">
                 <div className="flex-none bg-[#1a1b1c] text-white p-3 shadow-sm rounded-sm">
                   <IoMailOutline className="size-6" />

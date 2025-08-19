@@ -15,8 +15,9 @@ const Footer = () => {
               />
             </Link>
             <p className="text-gray-400 text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Praesentium quaerat esse sequi minus fugit cumque.
+              Elysian Hotel - Your comfort is our priority. Experience luxury
+              and relaxation like never before at Elysian Hotel, where every
+              detail is designed to make your stay unforgettable.
             </p>
           </div>
           <div className="flex gap-20">
@@ -76,7 +77,8 @@ const Footer = () => {
               Newsletter
             </h4>
             <p className="text-gray-400 text-sm">
-              Lorem ipsum dolor sit, amet consectetur adipisicing.
+              Subscribe to our newsletter to get the latest updates and offers
+              directly in your inbox.
             </p>
             <form action="" className="mt-5">
               <div className="mb-5">

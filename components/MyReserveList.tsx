@@ -10,7 +10,7 @@ const MyReserveList = async () => {
   const reservation = await getReservationByUserId();
   if (!reservation) return notFound();
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-10" data-aos="fade-up" data-aos-delay="800">
       {reservation.map((item) => (
         <div
           className="bg-[#1a1b1c] shadow-[0px_5px_28px_-5px_rgba(255,_255,_255,_0.05)] rounded-md overflow-hidden flex flex-col md:flex-row"

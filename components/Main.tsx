@@ -9,7 +9,10 @@ const Main = async () => {
     <div className="max-w-screen-xl py-6 pb-20 px-4 mx-auto">
       <div className="grid gap-12 md:grid-cols-3">
         {rooms.map((room) => (
-          <div className="hover:*:scale-105 transition-all duration-100 " key={room.id}>
+          <div
+            className="hover:*:scale-105 transition-all duration-100 "
+            key={room.id}
+          >
             <Card room={room} key={room.id} />
           </div>
         ))}

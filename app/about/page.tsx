@@ -125,9 +125,11 @@ const AboutPage = () => {
               data-aos="fade-up"
               data-aos-delay="300"
             >
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis
-              harum est, possimus ad natus commodi sunt distinctio dolor
-              recusandae accusamus?
+              We are a dedicated team of hospitality professionals with over 4
+              years of experience in the industry. Our mission is to provide
+              exceptional service and create unforgettable experiences for our
+              guests. We believe in the power of hospitality to bring people
+              together and create lasting memories.
             </p>
 
             <ul className="list-item space-y-6 pt-8 text-white">
@@ -142,8 +144,8 @@ const AboutPage = () => {
                 <div className="flex-1">
                   <h4 className="text-lg font-semibold mb-1">Vision :</h4>
                   <p className="text-white opacity-70">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Maiores ipsa quo, natus numquam officiis pariatur?
+                    To be the leading hotel in the industry, renowned for our
+                    exceptional service and commitment to guest satisfaction.
                   </p>
                 </div>
               </li>
@@ -159,9 +161,8 @@ const AboutPage = () => {
                 <div className="flex-1">
                   <h4 className="text-lg font-semibold mb-1">Mission :</h4>
                   <p className="text-white opacity-70">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Inventore recusandae repudiandae perferendis vitae rerum
-                    omnis repellendus sapiente aspernatur veniam fugiat?
+                    To provide exceptional service and create unforgettable
+                    experiences for our guests.
                   </p>
                 </div>
               </li>

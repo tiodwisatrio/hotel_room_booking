@@ -11,16 +11,17 @@ export const metadata: Metadata = {
 const RoomPage = () => {
   return (
     <div>
-      <div className=" gap-3 text-center pt-20 pb-8">
+      <div className=" gap-3 text-center pt-24 pb-8">
         <p
           data-aos="fade-down"
-          className="text-sm uppercase text-[var(--gold)]"
+          data-aos-delay="200"
+          className="text-sm uppercase text-[var(--gold)] mb-4"
         >
           ROOMS AND SUITES
         </p>
         <h1
           data-aos="fade-up"
-          data-aos-delay="100"
+          data-aos-delay="400"
           className="text-2xl md:text-4xl font-semibold text-white"
         >
           Comfortable Rooms <br /> Just For You

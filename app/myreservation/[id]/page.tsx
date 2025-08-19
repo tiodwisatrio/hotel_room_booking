@@ -14,7 +14,11 @@ const MyReservationDetailPage = async ({
   const reservationId = (await params).id;
   return (
     <div className="min-h-screen bg-[var(--background)]">
-      <div className="max-w-screen-lg mx-auto py-20 px-4">
+      <div
+        className="max-w-screen-lg mx-auto py-20 px-4"
+        data-aos="fade-down"
+        data-aos-delay="200"
+      >
         <h1 className="text-2xl font-semibold mb-8 text-white">
           Reservation Detail
         </h1>{" "}

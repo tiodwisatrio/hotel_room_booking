@@ -15,10 +15,14 @@ const MyReservationPage = async () => {
       <div className="max-w-screen lg:mx-auto  py-20 px-4">
         <div className="flex items-center justify-between">
           <div className="text-white mb-8">
-            <h3 className="text-2xl text-white mb-2 font-semibold">
+            <h3
+              className="text-2xl text-white mb-2 font-semibold"
+              data-aos="fade-down"
+              data-aos-delay="200"
+            >
               Hi, {session.user.name}
             </h3>
-            <p className="text-sm mt-1 mb-4 opacity-70">
+            <p className="text-sm mt-1 mb-4 opacity-70" data-aos="fade-down" data-aos-delay="400">
               Here&apos;s are your reservations
             </p>
           </div>
