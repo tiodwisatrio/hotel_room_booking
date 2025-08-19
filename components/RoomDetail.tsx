@@ -12,7 +12,7 @@ const RoomDetail = async ({ roomId }: { roomId: string }) => {
   ]);
   if (!room || !disabledDates) return notFound();
   return (
-    <div className="max-w-screen-xl py-16 px-4 grid lg:grid-cols-12 gap-8 mx-auto">
+    <div className="max-w-screen-xl py-20 px-4 grid lg:grid-cols-12 gap-8 mx-auto">
       <div className="md:col-span-8">
         <Image
           src={room.image}

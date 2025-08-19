@@ -12,7 +12,7 @@ const RoomDetailPage = async ({
 }) => {
   const roomId = (await params).roomId;
   return (
-    <div className="mt-16">
+    <div className="py-12">
       <Suspense fallback={<p>Loading...</p>}>
         <RoomDetail roomId={roomId} />
       </Suspense>

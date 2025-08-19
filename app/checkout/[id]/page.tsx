@@ -15,7 +15,7 @@ const CheckoutPage = async ({
   const reservationId = (await params).id;
 
   return (
-    <div className="max-w-screen px-4 py-20 mx-auto mt-12 bg-[var(--background)]">
+    <div className="max-w-screen px-4 py-20 mx-auto bg-[var(--background)]">
       <h1 className="text-2xl font-semibold mb-8 text-white">Reservation Summary</h1>
       <Suspense fallback={<p>Loading...</p>}>
         <CheckoutDetail reservationId={reservationId} />
