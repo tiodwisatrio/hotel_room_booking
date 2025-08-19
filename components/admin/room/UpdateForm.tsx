@@ -8,6 +8,7 @@ import { Amenities } from "@/app/generated/prisma/client";
 import { useActionState } from "react";
 import { updateRoom } from "@/libs/actions";
 import { RoomProps } from "@/types/room";
+import { formatCurrency } from "@/libs/utils";
 
 const UpdateForm = ({
   amenities,
@@ -21,11 +22,48 @@ const UpdateForm = ({
   const [message, setMessage] = useState("");
   const [isPending, startTransition] = useTransition();
 
-  // Memperbaiki urutan argumen. `room.id` harus diletakkan sebelum `image`.
+  // keep same action binding
   const [state, formAction] = useActionState(
     updateRoom.bind(null, room.id, image),
     null
   );
+
+  // price display + raw (submitted) state (init from room.price)
+  const [priceDisplay, setPriceDisplay] = useState<string>(
+    formatCurrency(room.price ?? 0)
+  );
+  const [priceRaw, setPriceRaw] = useState<string>(String(room.price ?? 0));
+
+  // prevent typing/pasting '-' / invalid chars into numeric inputs
+  const preventInvalidNumberInput = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (e.key === "-" || e.key === "+" || e.key.toLowerCase() === "e") {
+      e.preventDefault();
+    }
+  };
+
+  const handlePasteNumber = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const text = e.clipboardData.getData("text");
+    if (/[^0-9]/.test(text) || text.includes("-")) {
+      e.preventDefault();
+    }
+  };
+
+  const sanitizeNumberInput = (e: React.FormEvent<HTMLInputElement>) => {
+    const el = e.currentTarget;
+    if (el.value.includes("-")) {
+      el.value = el.value.replace(/-/g, "");
+    }
+  };
+
+  // handle price typed by user, format with formatCurrency and keep raw numeric value
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const digits = e.target.value.replace(/\D/g, "");
+    const num = digits === "" ? 0 : Number(digits);
+    setPriceRaw(String(num));
+    setPriceDisplay(formatCurrency(num));
+  };
 
   // Upload file
   const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -213,7 +251,7 @@ const UpdateForm = ({
             </label>
           )}
 
-          {/* Capacity */}
+          {/* Capacity (no spin, no minus) */}
           <div className="my-4">
             <label
               htmlFor="capacity"
@@ -227,7 +265,13 @@ const UpdateForm = ({
               name="capacity"
               defaultValue={room.capacity}
               placeholder="Capacity"
-              className="py-2 px-4 rounded-sm border border-gray-400 w-full"
+              className="no-spin py-2 px-4 rounded-sm border border-gray-400 w-full"
+              min={0}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              onKeyDown={preventInvalidNumberInput}
+              onPaste={handlePasteNumber}
+              onInput={sanitizeNumberInput}
             />
             <div aria-live="polite" aria-atomic="true">
               <span className="text-sm text-red-500 mt-1">
@@ -236,22 +280,34 @@ const UpdateForm = ({
             </div>
           </div>
 
-          {/* Price */}
+          {/* Price (formatted display + hidden numeric for submission) */}
           <div className="my-4">
             <label
-              htmlFor="price"
+              htmlFor="price_display"
               className="block text-sm font-medium text-white mb-1"
             >
               Price
             </label>
+
+            {/* visible formatted input */}
             <input
-              id="price"
-              type="number"
-              name="price"
-              defaultValue={room.price}
-              placeholder="Price"
+              id="price_display"
+              type="text"
+              name="price_display"
+              placeholder={formatCurrency(0)}
               className="py-2 px-4 rounded-sm border border-gray-400 w-full"
+              value={priceDisplay}
+              onChange={handlePriceChange}
+              onKeyDown={(e) => {
+                if ((e as React.KeyboardEvent<HTMLInputElement>).key === "-")
+                  (e as React.KeyboardEvent<HTMLInputElement>).preventDefault();
+              }}
+              onPaste={handlePasteNumber}
             />
+
+            {/* hidden numeric value for submission */}
+            <input type="hidden" name="price" value={priceRaw} />
+
             <div aria-live="polite" aria-atomic="true">
               <span className="text-sm text-red-500 mt-1">
                 {state?.error?.price}

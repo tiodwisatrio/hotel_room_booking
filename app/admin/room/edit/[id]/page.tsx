@@ -10,7 +10,7 @@ const UpdateRoomPage = async ({
   const roomId = (await params).id;
   if (!roomId) return notFound();
   return (
-    <div className="max-w-screen-xl px-4 py-16 mt-10 mx-auto">
+    <div className="max-w-screen-xl px-4 py-20 mx-auto">
       <Suspense fallback={<p>Loading...</p>}>
         <UpdateRoom roomId={roomId} />
       </Suspense>

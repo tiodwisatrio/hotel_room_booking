@@ -17,15 +17,15 @@ const Navlink = () => {
             <Image
               className="rounded-full"
               src={session.user.image || "/avatar.svg"}
-              width={48}
-              height={48}
+              width={32}
+              height={32}
               alt="avatar"
             />
           </div>
           <div className="flex items-center">
             <button
               onClick={() => signOut()}
-              className="md:block hidden py-2 px-5 grayscale-50 text-white hover:text-[var(--gold)] rounded-sm cursor-pointer"
+              className="md:block hidden py-2 px-5 grayscale-50 text-white hover:text-[var(--gold)] rounded-sm cursor-pointer text-sm"
             >
               Sign Out
             </button>
@@ -49,7 +49,6 @@ const Navlink = () => {
           block: isOpen,
         })}
       >
-
         <ul className="flex flex-col font-semibold text-[10px] capitalize p-4 mt-2  gap-y-2 rounded-sm md:flex-row md:items-center md:space-x-10 md:p-0 md:mt-0 md:border-0 bg-transparent">
           <li>
             <Link
@@ -122,7 +121,7 @@ const Navlink = () => {
             <li className="pt-2 md:pt-0">
               <button
                 onClick={() => signOut()}
-                className="md:hidden px-4 py-2.5 bg-red-400 text-white hover:bg-red-600 rounded-sm cursor-pointer"
+                className="md:hidden px-4 py-2.5 bg-red-400 text-white hover:bg-red-600 rounded-sm cursor-pointer text-[10px]"
               >
                 Sign Out
               </button>
@@ -131,7 +130,7 @@ const Navlink = () => {
             <li className="pt-2 md:pt-0">
               <Link
                 href="/signin"
-                className="px-6 py-2.5 bg-[var(--gold)] text-white hover:bg-[var(--goldhover)] rounded-sm"
+                className="px-6 py-2.5 bg-[var(--gold)] text-white hover:bg-[var(--goldhover)] rounded-sm text-[10px]"
               >
                 SignIn
               </Link>

@@ -12,7 +12,7 @@ const MyReservationPage = async () => {
   if (!session || !session.user) redirect("/signin");
   return (
     <div className="min-h-screen bg-[var(--background)] px-10">
-      <div className="max-w-screen lg:mx-auto mt-10 py-20 px-4">
+      <div className="max-w-screen lg:mx-auto  py-20 px-4">
         <div className="flex items-center justify-between">
           <div className="text-white mb-8">
             <h3 className="text-2xl text-white mb-2 font-semibold">
