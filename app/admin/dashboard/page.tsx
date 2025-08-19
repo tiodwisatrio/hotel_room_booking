@@ -8,8 +8,8 @@ export const metadata: Metadata = {
 
 const DashboardPage = () => {
   return (
-    <div className="mt-10 max-w-screen px-4 py-16 mx-auto">
-      <h1 className="text-4xl font-bold text-gray-800 mb-10">Dashboard</h1>
+    <div className=" max-w-screen px-4 py-20 mx-auto">
+      <h1 className="text-4xl font-bold text-white mb-10">Dashboard</h1>
       <Suspense fallback={<p>Loading...</p>}>
         <DashboardCard />
       </Suspense>

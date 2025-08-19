@@ -8,39 +8,39 @@ const ReservationList = async () => {
   if (!reservations?.length) return <p>No Reservations Found</p>;
 
   return (
-    <div className="bg-white p-4 mt-5 shadow-sm">
-      <table className="w-full divide-y divide-gray-200">
+    <div className="bg-[#1a1b1c] p-4 mt-5 shadow-sm rounded-md">
+      <table className="w-full divide-y divide-gray-700">
         <thead>
           <tr>
-            <th className="px-6 py-3 w-32 text-sm font-bold text-gray-700 uppercase text-left">
+            <th className="px-6 py-3 w-32 text-sm font-bold text-white uppercase text-left">
               Image
             </th>
-            <th className="px-6 py-3 text-sm font-bold text-gray-700 uppercase text-left">
+            <th className="px-6 py-3 text-sm font-bold text-white uppercase text-left">
               Customer Name
             </th>
-            <th className="px-6 py-3 text-sm font-bold text-gray-700 uppercase text-left">
+            <th className="px-6 py-3 text-sm font-bold text-white uppercase text-left">
               Arrival
             </th>
-            <th className="px-6 py-3 text-sm font-bold text-gray-700 uppercase text-left">
+            <th className="px-6 py-3 text-sm font-bold text-white uppercase text-left">
               Departure
             </th>
-            <th className="px-6 py-3 text-sm font-bold text-gray-700 uppercase text-left">
+            <th className="px-6 py-3 text-sm font-bold text-white uppercase text-left">
               Room Name
             </th>
-            <th className="px-6 py-3 text-sm font-bold text-gray-700 uppercase text-left">
+            <th className="px-6 py-3 text-sm font-bold text-white uppercase text-left">
               Price
             </th>
-            <th className="px-6 py-3 text-sm font-bold text-gray-700 uppercase text-left">
+            <th className="px-6 py-3 text-sm font-bold text-white uppercase text-left">
               Created At
             </th>
-            <th className="px-6 py-3 text-sm font-bold text-gray-700 uppercase">
+            <th className="px-6 py-3 text-sm font-bold text-white uppercase">
               Status
             </th>
           </tr>
         </thead>
-        <tbody className="divide-y divide-gray-200">
+        <tbody className="divide-y divide-gray-700 text-white">
           {reservations.map((reservation) => (
-            <tr className="hover:bg-gray-100" key={reservation.id}>
+            <tr className="hover:bg-neutral-800" key={reservation.id}>
               <td className="px-6 py-4">
                 <div className="h-20 w-32 relative">
                   <Image

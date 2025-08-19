@@ -7,6 +7,7 @@ import { IoCloudUpload, IoClose } from "react-icons/io5";
 import { Amenities } from "@/app/generated/prisma/client";
 import { useActionState } from "react";
 import { SaveRoom } from "@/libs/actions";
+import { formatCurrency } from "@/libs/utils";
 
 const CreateForm = ({ amenities }: { amenities: Amenities[] }) => {
   const inputFileRef = useRef<HTMLInputElement>(null);
@@ -14,6 +15,41 @@ const CreateForm = ({ amenities }: { amenities: Amenities[] }) => {
   const [message, setMessage] = useState("");
   const [isPending, startTransition] = useTransition();
   const [state, formAction] = useActionState(SaveRoom.bind(null, image), null);
+
+  // price display + raw (submitted) state
+  const [priceDisplay, setPriceDisplay] = useState<string>(formatCurrency(0));
+  const [priceRaw, setPriceRaw] = useState<string>("0");
+
+  const preventInvalidNumberInput = (
+    e: React.KeyboardEvent<HTMLInputElement>
+  ) => {
+    if (e.key === "-" || e.key === "+" || e.key.toLowerCase() === "e") {
+      e.preventDefault();
+    }
+  };
+
+  const handlePasteNumber = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const text = e.clipboardData.getData("text");
+    if (/[^0-9]/.test(text) || text.includes("-")) {
+      e.preventDefault();
+    }
+  };
+
+  const sanitizeNumberInput = (e: React.FormEvent<HTMLInputElement>) => {
+    const el = e.currentTarget;
+    if (el.value.includes("-")) {
+      el.value = el.value.replace(/-/g, "");
+    }
+  };
+
+  // handle price typed by user, format with formatCurrency and keep raw numeric value
+  const handlePriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // remove all non-digit characters
+    const digits = e.target.value.replace(/\D/g, "");
+    const num = digits === "" ? 0 : Number(digits);
+    setPriceRaw(String(num));
+    setPriceDisplay(formatCurrency(num));
+  };
 
   // Upload file
   const handleUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -209,7 +245,13 @@ const CreateForm = ({ amenities }: { amenities: Amenities[] }) => {
               type="number"
               name="capacity"
               placeholder="Capacity"
-              className="py-2 px-4 rounded-sm border border-gray-400 w-full"
+              className="no-spin py-2 px-4 rounded-sm border border-gray-400 w-full"
+              min={0}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              onKeyDown={preventInvalidNumberInput}
+              onPaste={handlePasteNumber}
+              onInput={sanitizeNumberInput}
             />
             <div aria-live="polite" aria-atomic="true">
               <span className="text-sm text-red-500 mt-1">
@@ -221,18 +263,31 @@ const CreateForm = ({ amenities }: { amenities: Amenities[] }) => {
           {/* Price */}
           <div className="my-4">
             <label
-              htmlFor="price"
+              htmlFor="price_display"
               className="block text-sm font-medium text-white mb-1"
             >
               Price
             </label>
+
+            {/* visible formatted input */}
             <input
-              id="price"
-              type="number"
-              name="price"
-              placeholder="Price"
+              id="price_display"
+              type="text"
+              name="price_display"
+              placeholder={formatCurrency(0)}
               className="py-2 px-4 rounded-sm border border-gray-400 w-full"
+              value={priceDisplay}
+              onChange={handlePriceChange}
+              onKeyDown={(e) => {
+                if ((e as React.KeyboardEvent<HTMLInputElement>).key === "-")
+                  (e as React.KeyboardEvent<HTMLInputElement>).preventDefault();
+              }}
+              onPaste={handlePasteNumber}
             />
+
+            {/* hidden numeric value for submission */}
+            <input type="hidden" name="price" value={priceRaw} />
+
             <div aria-live="polite" aria-atomic="true">
               <span className="text-sm text-red-500 mt-1">
                 {state?.error?.price}
