@@ -20,10 +20,10 @@ const ReserveForm = ({
   const [startDate, setStartDate] = useState(StartDate);
   const [endDate, setEndDate] = useState(EndDate);
 
-  const handleDateChange = (dates: any) => {
+  const handleDateChange = (dates: [Date | null, Date | null]) => {
     const [start, end] = dates;
-    setStartDate(start);
-    setEndDate(end);
+    setStartDate(start ?? StartDate);
+    setEndDate(end ?? EndDate);
   };
 
   const [state, formAction, isPending] = useActionState(
@@ -39,7 +39,7 @@ const ReserveForm = ({
   });
   return (
     <div>
-      <form action={formAction} >
+      <form action={formAction}>
         <div className="mb-8">
           <label className="block mb-2 text-sm font-medium text-white">
             Arrival - Departure
