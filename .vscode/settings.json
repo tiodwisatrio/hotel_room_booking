@@ -1,0 +1,9 @@
+{
+  "files.watcherExclude": {
+    "**/Cookies/**": true,
+    "**/AppData/**": true,
+    "**/Application Data/**": true,
+    "**/node_modules/**": true,
+    "**/.git/**": true
+  }
+}

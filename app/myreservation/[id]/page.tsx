@@ -5,12 +5,27 @@ export const metadata: Metadata = {
   title: "Reservation Detail",
 };
 
-const MyReservationDetailPage = async ({
-  params,
-}: {
-  params: { id: string };
-}) => {
-  const reservationId = params.id;
+type PageProps = { params?: Record<string, string | string[]> };
+
+const MyReservationDetailPage = async (props: PageProps) => {
+  const rawId = props?.params?.id;
+  const reservationId =
+    typeof rawId === "string"
+      ? rawId
+      : Array.isArray(rawId)
+      ? String(rawId[0])
+      : "";
+
+  if (!reservationId) {
+    return (
+      <div className="min-h-screen bg-[var(--background)]">
+        <div className="max-w-screen-lg mx-auto py-20 px-4">
+          <p className="text-white">Missing reservation id</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-[var(--background)]">
       <div
@@ -20,8 +35,7 @@ const MyReservationDetailPage = async ({
       >
         <h1 className="text-2xl font-semibold mb-8 text-white">
           Reservation Detail
-        </h1>{" "}
-        {/* Add more reservation details here */}
+        </h1>
         <Suspense fallback={<p>Loading...</p>}>
           <ReservationDetail reservationId={reservationId} />
         </Suspense>
