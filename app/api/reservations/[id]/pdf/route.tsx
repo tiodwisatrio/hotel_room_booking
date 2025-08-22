@@ -74,11 +74,8 @@ async function toUint8Array(result: any): Promise<Uint8Array> {
   return new Uint8Array(Buffer.from(result as any));
 }
 
-export async function GET(
-  _req: Request,
-  { params }: { params: { id: string } }
-) {
-  const { id } = params;
+export async function GET(_req: Request, context: any) {
+  const id = String(context?.params?.id);
   console.log(`PDF: request for reservation id=${id}`);
 
   try {
