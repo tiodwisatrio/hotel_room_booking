@@ -1,4 +1,3 @@
-import DownloadReservationPdf from "@/components/DownloadReservationPdf";
 import ReservationDetail from "@/components/ReservationDetail";
 import { Metadata } from "next";
 import { Suspense } from "react";
@@ -11,7 +10,7 @@ const MyReservationDetailPage = async ({
 }: {
   params: { id: string };
 }) => {
-  const reservationId = (await params).id;
+  const reservationId = params.id;
   return (
     <div className="min-h-screen bg-[var(--background)]">
       <div
@@ -22,7 +21,6 @@ const MyReservationDetailPage = async ({
         <h1 className="text-2xl font-semibold mb-8 text-white">
           Reservation Detail
         </h1>{" "}
-        <DownloadReservationPdf reservationId={reservationId} />
         {/* Add more reservation details here */}
         <Suspense fallback={<p>Loading...</p>}>
           <ReservationDetail reservationId={reservationId} />

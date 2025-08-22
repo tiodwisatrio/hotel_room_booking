@@ -1,3 +1,4 @@
+// ...existing code...
 import { PaymentProps } from "./../../../../types/payment";
 import { NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
@@ -31,23 +32,20 @@ export const POST = async (request: Request) => {
 
   if (transactionStatus == "capture") {
     if (fraudStatus == "accept") {
-      const transaction = await prisma.payment.update({
+      responseData = await prisma.payment.update({
         data: {
           method: paymentType,
           status: "paid",
         },
-
         where: { reservationId },
       });
-      responseData = transaction;
     }
   } else if (transactionStatus == "settlement") {
-    const transaction = await prisma.payment.update({
+    responseData = await prisma.payment.update({
       data: {
         method: paymentType,
         status: "paid",
       },
-
       where: { reservationId },
     });
   } else if (
@@ -55,28 +53,26 @@ export const POST = async (request: Request) => {
     transactionStatus == "deny" ||
     transactionStatus == "expire"
   ) {
-    const transaction = await prisma.payment.update({
+    responseData = await prisma.payment.update({
       data: {
         method: paymentType,
         status: "Failure",
       },
-
       where: { reservationId },
     });
   } else if (transactionStatus == "pending") {
-    const transaction = await prisma.payment.update({
+    responseData = await prisma.payment.update({
       data: {
         method: paymentType,
         status: "pending",
       },
-
       where: { reservationId },
     });
   }
+
   return NextResponse.json({
     responseData: responseData,
     success: true,
     status: transactionStatus,
   });
 };
-//   return NextResponse.json({ success: true });

@@ -1,5 +1,5 @@
+// ...existing code...
 import { Metadata } from "next";
-import HeaderSection from "@/components/HeaderSection";
 import Image from "next/image";
 import { IoEyeOffOutline, IoLocateOutline } from "react-icons/io5";
 
@@ -175,3 +175,4 @@ const AboutPage = () => {
 };
 
 export default AboutPage;
+// ...existing code...
