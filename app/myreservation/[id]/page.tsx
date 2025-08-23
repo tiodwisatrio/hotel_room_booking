@@ -1,14 +1,23 @@
 import ReservationDetail from "@/components/ReservationDetail";
 import { Metadata } from "next";
 import { Suspense } from "react";
+
 export const metadata: Metadata = {
   title: "Reservation Detail",
 };
 
-type PageProps = { params?: Record<string, string | string[]> };
+export default async function MyReservationDetailPage(props: unknown) {
+  // ambil kemungkinan params dari props (props bisa berupa object Next internal)
+  const maybeParams = (props as { params?: unknown })?.params;
 
-const MyReservationDetailPage = async (props: PageProps) => {
-  const rawId = props?.params?.id;
+  // jika params adalah Promise, tunggu; jika object langsung, gunakan
+  const resolvedParams =
+    maybeParams &&
+    typeof (maybeParams as { then?: unknown })?.then === "function"
+      ? await (maybeParams as Promise<{ id?: string | string[] }>)
+      : (maybeParams as { id?: string | string[] } | undefined);
+
+  const rawId = resolvedParams?.id;
   const reservationId =
     typeof rawId === "string"
       ? rawId
@@ -36,12 +45,11 @@ const MyReservationDetailPage = async (props: PageProps) => {
         <h1 className="text-2xl font-semibold mb-8 text-white">
           Reservation Detail
         </h1>
+
         <Suspense fallback={<p>Loading...</p>}>
           <ReservationDetail reservationId={reservationId} />
         </Suspense>
       </div>
     </div>
   );
-};
-
-export default MyReservationDetailPage;
+}

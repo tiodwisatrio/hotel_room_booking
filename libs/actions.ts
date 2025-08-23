@@ -1,5 +1,5 @@
 "use server";
-import { notFound, redirect } from "next/navigation";
+import { redirect } from "next/navigation";
 import { prisma } from "./prisma";
 import { ContactSchema, RoomSchema, ReserveSchema } from "./zod";
 import { del } from "@vercel/blob";
@@ -61,7 +61,9 @@ export const SaveRoom = async (
         },
       },
     });
-  } catch (error) {}
+  } catch (error) {
+    console.error(error);
+  }
 
   redirect("/admin/room");
 };

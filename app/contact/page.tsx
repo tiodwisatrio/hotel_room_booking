@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import HeaderSection from "@/components/HeaderSection";
 import {
   IoMailOutline,
   IoCallOutline,

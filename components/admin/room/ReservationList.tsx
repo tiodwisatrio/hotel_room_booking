@@ -1,7 +1,6 @@
 import { getReservations } from "@/libs/data";
 import Image from "next/image";
 import { formatDate, formatCurrency } from "@/libs/utils";
-import { DeleteButton, UpdateButton } from "./button";
 
 const ReservationList = async () => {
   const reservations = await getReservations();

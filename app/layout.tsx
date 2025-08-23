@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Merriweather, Playfair_Display, Raleway } from "next/font/google";
+import { Merriweather } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/Footer";

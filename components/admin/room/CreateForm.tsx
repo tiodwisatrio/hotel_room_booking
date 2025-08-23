@@ -4,10 +4,10 @@ import Image from "next/image";
 import { useRef, useState, useTransition } from "react";
 import { BarLoader } from "react-spinners";
 import { IoCloudUpload, IoClose } from "react-icons/io5";
-import { Amenities } from "@/app/generated/prisma/client";
+import { Amenities } from "@prisma/client";
+import { formatCurrency } from "@/libs/utils";
 import { useActionState } from "react";
 import { SaveRoom } from "@/libs/actions";
-import { formatCurrency } from "@/libs/utils";
 
 const CreateForm = ({ amenities }: { amenities: Amenities[] }) => {
   const inputFileRef = useRef<HTMLInputElement>(null);

@@ -1,4 +1,3 @@
-import { Payment } from "./../app/generated/prisma/index.d";
 import { prisma } from "./prisma";
 import { auth } from "@/auth";
 

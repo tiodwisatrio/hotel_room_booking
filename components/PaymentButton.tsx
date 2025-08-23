@@ -26,7 +26,9 @@ const PaymentButton = ({ reservation }: { reservation: reservationProps }) => {
         if (token) {
           window.snap.pay(token);
         }
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     });
   };
 

@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRef, useState, useTransition } from "react";
 import { BarLoader } from "react-spinners";
 import { IoCloudUpload, IoClose } from "react-icons/io5";
-import { Amenities } from "@/app/generated/prisma/client";
+import { Amenities } from "@prisma/client";
 import { useActionState } from "react";
 import { updateRoom } from "@/libs/actions";
 import { RoomProps } from "@/types/room";
@@ -125,7 +125,7 @@ const UpdateForm = ({
     setMessage("Image removed.");
   };
 
-  const checkedAmenities = room.RoomAmenities.map((item) => item.amenitiesId);
+  const checkedAmenities = room.RoomAmenities.map((item: { amenitiesId: string }) => item.amenitiesId);
 
   return (
     <form action={formAction}>

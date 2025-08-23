@@ -1,4 +1,4 @@
-import { Room } from "@/app/generated/prisma";
+import { Room } from "@prisma/client";
 import { formatCurrency } from "@/libs/utils";
 import Image from "next/image";
 import Link from "next/link";
